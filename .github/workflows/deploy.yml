@@ -1,0 +1,48 @@
+## OPTIONAL - THIS IS A TEMPLATE FOR DEPLOYMENT IN DIFF ENVS
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run database migrations
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DJANGO_SETTINGS_MODULE: optimal_api.settings
+      run: |
+        python manage.py migrate
+
+    - name: Collect static files
+      env:
+        DJANGO_SETTINGS_MODULE: optimal_api.settings
+      run: |
+        python manage.py collectstatic --noinput
+
+    - name: Deploy to production
+      env:
+        DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        HOST: ${{ secrets.HOST }}
+        USERNAME: ${{ secrets.USERNAME }}
+      run: |
+        # Add your deployment commands here
+        # This could be deploying to a cloud provider, VPS, etc.
+        echo "Deploying to production..."

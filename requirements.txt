@@ -1,0 +1,9 @@
+Django==5.2.1
+djangorestframework==3.14.0
+python-dotenv==1.0.0
+openrouteservice==2.3.3
+diskcache==5.6.3
+polyline==1.4.0
+django-cors-headers==4.3.1
+gunicorn==21.2.0
+whitenoise==6.6.0
