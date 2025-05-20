@@ -15,7 +15,6 @@ A Django-based API for optimal fuel stop planning during long-distance travel. T
 
 - Python 3.10 or higher
 - Django 3.2.23
-- PostgreSQL (recommended for production)
 - OpenRoute API key
 - Fuel price data CSV
 
@@ -23,23 +22,12 @@ A Django-based API for optimal fuel stop planning during long-distance travel. T
 
 ### Using pip
 
-```bash
-pip install optimal_route
-```
-
 ### From source
 
 ```bash
 git clone https://github.com/MutugiD/optimal_route.git
 cd optimal_route
-pip install -e .
-```
-
-### Using Docker
-
-```bash
-docker build -t optimal_route .
-docker run -p 8000:8000 optimal_route
+pip install .
 ```
 
 ## Configuration
@@ -62,7 +50,7 @@ CACHE_DIR=cache
 CACHE_TTL=3600
 FUEL_PRICES_CSV=data/fuel-prices.csv
 MAX_PAYLOAD_SIZE=1048576
-RATE_LIMIT=60
+RATE_LIMIT=100
 ```
 
 ## Usage
@@ -101,12 +89,12 @@ X-API-Key: your-api-key
 
 ```bash
 # Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
+python -m venv optimal_env
+source optimal_env/bin/activate  # Linux/Mac
 venv\Scripts\activate     # Windows
 
 # Install dependencies
-pip install -r requirements.txt
+pip install .
 
 # Run migrations
 python manage.py migrate
