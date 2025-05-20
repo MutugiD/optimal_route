@@ -1,6 +1,6 @@
-# Fuel Planner API
+# Optimal Route API
 
-A Django-based API for optimal fuel stop planning during long-distance travel. This API helps drivers plan their fuel stops efficiently by considering factors like distance, fuel prices, and vehicle range.
+A Django-based API for optimal route and efficient fuel stop planning during long-distance travel. This API helps drivers plan their fuel stops efficiently by considering factors like distance, fuel prices, and vehicle range.
 
 ## Features
 
