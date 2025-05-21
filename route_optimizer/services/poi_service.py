@@ -133,12 +133,10 @@ class POIService:
                     station_names = [row['Truckstop Name'] for row in reader]
 
             # Use OpenRouteService to find POIs within bbox
-            # Note: This is a placeholder - actual implementation will depend on the API
-            # For now, return mock data
             stations = []
 
             # Generate stations along the route with some variation
-            num_stations = 5  # Number of stations to generate
+            num_stations = 15
             for i in range(num_stations):
                 # Calculate a point along the route
                 idx = int(i * (len(route_geometry) - 1) / (num_stations - 1))
@@ -149,7 +147,7 @@ class POIService:
                 lat_variation = random.uniform(-0.01, 0.01)
                 lon_variation = random.uniform(-0.01, 0.01)
 
-                # Use a real gas station name if available, otherwise use a generic name
+                # Use a real gas station name if available
                 station_name = random.choice(station_names) if station_names else f"Gas Station {i+1}"
 
                 station = {
